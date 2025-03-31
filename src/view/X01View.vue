@@ -2,12 +2,14 @@
 import {computed, ref} from "vue";
 import {useStore} from "vuex";
 import {useGame} from "@/composable/useGame.js";
+import PlayersScores from "@/components/PlayersScores.vue";
 
 const store = useStore();
 
 const players = computed(() => store.state.players.all);
 
 useGame(store);
+
 
 const firstDart = ref(null);
 const secondDart = ref(null);
@@ -106,30 +108,20 @@ const next = () => {
     thirdDart.value = null;
   }
 
-  if (currentPlayerIndex.value === players.value.length - 1) {
-    currentPlayerIndex.value = 0;
-    currentRound.value = currentRound.value + 1;
-  } else if (currentPlayerIndex.value < players.value.length) {
-    currentPlayerIndex.value = currentPlayerIndex.value + 1;
+  if (players.value.length) {
+    currentPlayerIndex.value = (currentPlayerIndex.value + 1) % players.value.length;
+    if (!currentPlayerIndex.value)
+      currentRound.value++;
   }
-
-
 }
 
 </script>
 
 <template>
-  <div class="players">
-    <div v-for="player of players" :key="player.id">
-      <div class="card" v-bind:class="{'selected': player.id === currentPlayerIndex}">
-        <div class="player" >
-          <div class="name">{{ player.name }}</div>
-          <div class="score">{{ player.score }}</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <PlayersScores
+      :players="players"
+      :current-player-index="currentPlayerIndex">
+  </PlayersScores>
 
   <div class="players">
     <div class="card">
@@ -261,9 +253,6 @@ button {
   padding: 10px;
 }
 
-.selected {
-  background-color: #6bb52d;
-}
 
 .round {
   font-size: 32px;
