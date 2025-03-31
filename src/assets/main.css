@@ -1,0 +1,49 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+.grid {
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+
+.button {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  color: #333333;
+  background-color: #FFFFFF;
+
+  margin: 12px;
+  padding: 12px 150px;
+
+  border-width: 0;
+  border-radius: 8px;
+
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-color: #6bb52d;
+}
+
+
