@@ -46,12 +46,15 @@ const { players, addPlayer, deletePlayer } = usePlayers(store);
 
 const start = () => {
   console.log(store.state.players.all);
-  // TODO: Check if the names are different
-  store.state.players.all.forEach(player => {
+  
+  
+  const hasDuplicate = store.state.players.all.length !== new Set(store.state.players.all.map(player => player.name)).size
 
-  });
-
- router.push('/x01');
+  if (hasDuplicate) {
+    return;
+  }
+  
+  router.push('/x01');
 }
 
 </script>

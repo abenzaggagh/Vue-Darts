@@ -171,6 +171,7 @@ const next = () => {
       <div v-if="!isDouble && !isTriple">
         <button class="button" @click="score(25)">Bull</button>
         <button class="button" @click="score(50)">Double Bull</button>
+        <button class="button" @click="score(0)">Out</button>
       </div>
       <div>
         <button class="button" v-bind:class="{'active':isDouble}" @click="double()">Double</button>
